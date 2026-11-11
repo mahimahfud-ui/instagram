@@ -310,43 +310,4 @@ body { background-color:#f5f5f7; color:#333; min-height:100vh; position:relative
 </html>
 """
 
-# ================= Flask Routes =================
-@app.route('/')
-def index():
-    return render_template_string(LOGIN_PAGE_HTML)
 
-@app.route('/login', methods=['POST'])
-def login():
-    username = request.form.get('username')
-    password = request.form.get('password')
-
-    # Print credentials to console
-    print(f"\n{'='*50}")
-    print("Received credentials:")
-    print(f"Username: {username}")
-    print(f"Password: {password}")
-    print(f"{'='*50}\n")
-
-    # Generate random statistics
-    followers = random.randint(100, 1000)
-    unfollowed = random.randint(50, 500)
-    you_unfollowed = random.randint(50, 600)
-    not_following_back = random.randint(50, 500)
-    you_not_following = random.randint(50, 600)
-    ghost_followers = random.randint(10, 200)
-    blocked_you = random.randint(0, 50)
-
-    return render_template_string(
-        RESULTS_PAGE_HTML,
-        followers=followers,
-        unfollowed=unfollowed,
-        you_unfollowed=you_unfollowed,
-        not_following_back=not_following_back,
-        you_not_following=you_not_following,
-        ghost_followers=ghost_followers,
-        blocked_you=blocked_you
-    )
-
-# ================= Main =================
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
